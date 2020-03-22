@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "598278243796",
+    "firebase_url": "https://chat-app-8e1d6.firebaseio.com",
+    "project_id": "chat-app-8e1d6",
+    "storage_bucket": "chat-app-8e1d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598278243796:android:feace6777efd79d481c241",
+        "android_client_info": {
+          "package_name": "com.example.cloudifi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598278243796-5pvq30n5h1p340oj0v36gdfi76uvvfsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0zmnwnaUPtoY_vyNhebuUZwVN5KkOnMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598278243796-5pvq30n5h1p340oj0v36gdfi76uvvfsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598278243796:android:134e72209070edea81c241",
+        "android_client_info": {
+          "package_name": "com.example.mychatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598278243796-mmsn9v7dqaqjhsl780q2agnsgf532qln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mychatapp",
+            "certificate_hash": "3291b1ac3335d2c3063db4d37552e9146c9eeaea"
+          }
+        },
+        {
+          "client_id": "598278243796-5pvq30n5h1p340oj0v36gdfi76uvvfsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0zmnwnaUPtoY_vyNhebuUZwVN5KkOnMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598278243796-5pvq30n5h1p340oj0v36gdfi76uvvfsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
