@@ -123,7 +123,7 @@ public class RegisterFragment extends Fragment {
                                         Map<String, String> userdetail = new HashMap<>();
                                         userdetail.put("username", user_name);
                                         userdetail.put("status", status_string);
-                                        userdetail.put("registered_date", FieldValue.serverTimestamp().toString());
+                                        userdetail.put("registered_date", String.valueOf(FieldValue.serverTimestamp()));
                                         userdetail.put("last_seen", "Not yet Connected");
 
                                         if (currentuser != null) {

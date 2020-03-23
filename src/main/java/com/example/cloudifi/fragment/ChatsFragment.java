@@ -8,6 +8,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +28,7 @@ import com.example.cloudifi.adapter.UsersListAdapter;
 import com.example.cloudifi.entitiies.UserEntity;
 import com.example.cloudifi.model.UsersModel;
 import com.example.cloudifi.repository.UserRepository;
+import com.example.cloudifi.viewModel.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,6 +59,8 @@ public class ChatsFragment extends Fragment implements UsersListAdapter.OnItemCl
     private TextView alert;
     private ProgressBar progressBar;
     private NavController navController;
+
+    private UserViewModel userViewModel;
 
     public ChatsFragment() {
         // Required empty public constructor
@@ -136,7 +142,6 @@ public class ChatsFragment extends Fragment implements UsersListAdapter.OnItemCl
 
                         UserRepository userRepository = new UserRepository(getActivity().getApplication());
                             userRepository.insertUserList(usersModelList);
-                        Toast.makeText(getContext(), "done", Toast.LENGTH_SHORT).show();
 
                     } else Toast.makeText(getContext(), "user list is empty", Toast.LENGTH_SHORT).show();
 
@@ -144,8 +149,17 @@ public class ChatsFragment extends Fragment implements UsersListAdapter.OnItemCl
             });
 
         } else {
-            Toast.makeText(getContext(), "Offline", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "You are offline", Toast.LENGTH_SHORT).show();
         }
+
+        //get the data from user database
+        userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
+        userViewModel.getUserDetailLiveData().observe(getViewLifecycleOwner(), new Observer<List<UserEntity>>() {
+            @Override
+            public void onChanged(List<UserEntity> userEntities) {
+                setChatlist(userEntities);
+            }
+        });
 
         alert.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
@@ -153,7 +167,6 @@ public class ChatsFragment extends Fragment implements UsersListAdapter.OnItemCl
 
     private void setChatlist(List<UserEntity> userEntitiesList) {
 
-        usersListAdapter = new UsersListAdapter(this);
         usersListAdapter.setUsersModelList(userEntitiesList);
         userList.setHasFixedSize(true);
         userList.setLayoutManager(new LinearLayoutManager(getContext()));

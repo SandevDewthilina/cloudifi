@@ -1,5 +1,6 @@
 package com.example.cloudifi.DAO;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Entity;
 import androidx.room.Insert;
@@ -17,4 +18,6 @@ public interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(List<UserEntity> userEntities);
 
+    @Query("SELECT * FROM user_table")
+    LiveData<List<UserEntity>> getUserDetails();
 }

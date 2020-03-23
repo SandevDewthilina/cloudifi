@@ -3,6 +3,8 @@ package com.example.cloudifi.repository;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Query;
 
 import com.example.cloudifi.DAO.UserDAO;
@@ -15,11 +17,12 @@ import java.util.List;
 public class UserRepository {
 
     private UserDAO userDAO;
-    private List<UserEntity> usersModelList;
+    private LiveData<List<UserEntity>> usersModelList;
 
     public UserRepository(Application application) {
         UserDatabase db = UserDatabase.getDatabase(application);
         userDAO = db.userDAO();
+        usersModelList = userDAO.getUserDetails();
     }
 
     public void insertUserList(final List<UserEntity> usersModelList) {
@@ -28,4 +31,7 @@ public class UserRepository {
         });
     }
 
+    public LiveData<List<UserEntity>> getUsersModelList() {
+        return usersModelList;
+    }
 }
