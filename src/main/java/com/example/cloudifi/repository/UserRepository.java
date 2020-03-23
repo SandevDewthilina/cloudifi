@@ -1,16 +1,12 @@
 package com.example.cloudifi.repository;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.room.Query;
 
 import com.example.cloudifi.DAO.UserDAO;
 import com.example.cloudifi.database.UserDatabase;
 import com.example.cloudifi.entitiies.UserEntity;
-import com.example.cloudifi.model.UsersModel;
 
 import java.util.List;
 

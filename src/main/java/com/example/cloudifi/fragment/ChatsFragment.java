@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -26,7 +25,6 @@ import android.widget.Toast;
 import com.example.cloudifi.R;
 import com.example.cloudifi.adapter.UsersListAdapter;
 import com.example.cloudifi.entitiies.UserEntity;
-import com.example.cloudifi.model.UsersModel;
 import com.example.cloudifi.repository.UserRepository;
 import com.example.cloudifi.viewModel.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -65,7 +63,6 @@ public class ChatsFragment extends Fragment implements UsersListAdapter.OnItemCl
     public ChatsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,12 +129,27 @@ public class ChatsFragment extends Fragment implements UsersListAdapter.OnItemCl
             final Query query = firebaseFirestore.collection("UserDetails")
                     .orderBy("registered_date", Query.Direction.ASCENDING);
 
-            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//
+//                    List<UserEntity> usersModelList = task.getResult().toObjects(UserEntity.class);
+//
+//                    if (usersModelList.size() != 0) {
+//
+//                        UserRepository userRepository = new UserRepository(getActivity().getApplication());
+//                            userRepository.insertUserList(usersModelList);
+//
+//                    } else Toast.makeText(getContext(), "user list is empty", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            });
+
+            query.addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
-                    List<UserEntity> usersModelList = task.getResult().toObjects(UserEntity.class);
-
+                    List<UserEntity> usersModelList = queryDocumentSnapshots.toObjects(UserEntity.class);
                     if (usersModelList.size() != 0) {
 
                         UserRepository userRepository = new UserRepository(getActivity().getApplication());

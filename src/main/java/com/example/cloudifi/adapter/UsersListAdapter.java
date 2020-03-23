@@ -6,12 +6,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cloudifi.R;
 import com.example.cloudifi.entitiies.UserEntity;
-import com.example.cloudifi.model.UsersModel;
 
 import java.util.List;
 
